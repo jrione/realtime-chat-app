@@ -157,7 +157,7 @@
 							ingfo(infoLogin,jsonDataLogin['login_error'],'danger');		
 						}
 						else{
-							ingfo(infoLogin,jsonDataLogin['success'],'success');	
+							// ingfo(infoLogin,jsonDataLogin['success'],'success');	
 							location.reload();
 						}
 					}
@@ -167,19 +167,23 @@
 	<?php			
 		 }
 		else{
+			$personal_data = $this->session->userdata();
 	?>
-	<body class="bg-dark">
+	<body class="bg-dark" style="overflow: hidden;">
 		<div id="id-fluid" class="container-fluid">
 			<div id="row-1st" class="row" >
 				<div id="head" class="col-sm-12 ">
 					<button id="toggle-sidebar" onclick="sideBar()" class="btn"><h1>☰</h1></button>
+					<div id="profile" class="float-right pt-1 pr-2" style="cursor: pointer;">
+						<img class="img-profile" src="<?= base_url($personal_data['u_img'])?>">
+					</div>
 				</div>
 			</div>
 			<div id="row-2nd" class="row">
 				<div id="contact" class="col-sm-4">
 					<div id="contact-card" class="card my-2">
 						<div class="card-body">
-							<h3 class="card-title text-center">Kontak</h3>
+							<h3 class="card-title text-center">Semua Kontak</h3>
 							<hr>
 							<div id="contact-list" class="card-text">
 								<div class="list row">
@@ -241,6 +245,22 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript">
+		// setInterval(function(){
+			$.post('<?= base_url('proses/fetchAccountData') ?>',{
+				key : '<?= cryptText('getAccountData')  ?>',
+				username: '<?= $personal_data['username'] ?>'
+			},
+			function(data){
+				if (data) {
+					alert(data);
+				}
+				else{
+					alert("TEST");
+				}
+			});
+		// },1000);
+	</script>
     <script type="text/javascript" src="<?= base_url('assets/js/script.js') ?>"></script>
 	<?php
 		}

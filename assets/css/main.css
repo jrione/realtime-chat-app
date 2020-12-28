@@ -17,7 +17,7 @@ body{
 }
 #head{
 	padding: 0;
-	background-color: #a4a71e;
+	background-color: #e1e1e1;
 }
 
 .img-profile{
@@ -40,7 +40,7 @@ body{
 
 #toggle-sidebar{
 	height: 100%;
-	background-color: #d6ce15;
+	/*background-color: #d6ce15;*/
 }
 h1{
 	margin:0;
@@ -60,7 +60,7 @@ h1{
     box-shadow: 0 0 3px #000000;
     text-align: justify;
 }
-#data{
+#data,#data-contact{
 	overflow-x: hidden;
 	width: 100%;
 	padding: 0;

@@ -27,7 +27,6 @@ class Controller{
 	 
 	public function post($name){
 		$a = htmlspecialchars($_POST[$name]);
-		$a = filter_var($a, FILTER_SANITIZE_URL);
 		return $a;
 	}
 	public function session($data){

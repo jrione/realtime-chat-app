@@ -15,6 +15,7 @@ class Auth extends Controller {
 						'name' => $this->post('name'),
 						'username' => $this->post('username'),
 						'password' => cryptText($this->post('password')),
+						'u_img' => "img/welcome_user.png"
 					];
 			if(strlen($data['name']) > 26){
 				echo json_encode(['name_error'=>'Nama tidak lebih dari 25 huruf!']);
@@ -42,8 +43,10 @@ class Auth extends Controller {
 					 'password' => cryptText($this->post('password'))
 					];
 			$check_data = $this->model->masuk('user',$data);
-			if ($check_data === 1) {
-				$this->session->set_userdata($data);
+			$personal_data = $this->model->get_user_data('user',$data);
+			
+			if ($check_data ===	1) {
+				$this->session->set_userdata($personal_data[0]);
 				echo json_encode(['success' => "Sukses, tunggu sebentar..."]); 
 			}
 			else{

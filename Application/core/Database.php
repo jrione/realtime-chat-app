@@ -113,11 +113,10 @@ class Database {
 		$this->statement->execute();
 	}
 
-	public function result_query($sql){
+	public function query($sql){
 		$this->statement=$this->conn->prepare($sql);
 		$this->statement->execute();
-	 	$sss = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
-	 	print_r($sss);
+	 	return  $this->statement->fetchAll(PDO::FETCH_ASSOC);
 
 	}
 

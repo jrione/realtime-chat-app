@@ -24,7 +24,7 @@ class Controller{
 			$this->model = new $class;
 			return $this->model;
 	}
-	
+	 
 	public function post($name){
 		$a = htmlspecialchars($_POST[$name]);
 		$a = filter_var($a, FILTER_SANITIZE_URL);

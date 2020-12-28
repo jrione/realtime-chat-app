@@ -106,7 +106,7 @@ class Database {
 				$va=$index.="='{$values}'";
 				array_push($this->dataString, $va);
 			}
-			$val=implode(" AND ",$this->dataString);
+			$val=implode(" AND ",$this->dataString); 
 			$sql= "DELETE FROM {$table} WHERE {$val}";
 		}
 		$this->statement=$this->conn->prepare($sql);

@@ -165,7 +165,7 @@
 			})
 		</script>
 	<?php			
-		}
+		 }
 		else{
 	?>
 	<body class="bg-dark">

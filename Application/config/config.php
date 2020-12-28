@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 define('APPPATH','a');
 define('DB_HOST', 'localhost');

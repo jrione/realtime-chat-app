@@ -24,4 +24,4 @@ function cryptText($pass){
 	    return $s;
 	}
 
-?>
+?> 

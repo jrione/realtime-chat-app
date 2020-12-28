@@ -44,7 +44,7 @@ class Auth extends Controller {
 			$check_data = $this->model->masuk('user',$data);
 			if ($check_data === 1) {
 				$this->session->set_userdata($data);
-				echo json_encode(['success' => "Sukses, tunggu sebentar..."]);
+				echo json_encode(['success' => "Sukses, tunggu sebentar..."]); 
 			}
 			else{
 				echo json_encode(['login_error' => "Username/Password salah!"]);

@@ -17,6 +17,6 @@ class Akun{
 	}
 
 	public function masuk($dbtable,$where){
-		return $this->db->get($dbtable,$where,01);
+		return $this->db->num_rows_where($dbtable,$where);
 	}
 }

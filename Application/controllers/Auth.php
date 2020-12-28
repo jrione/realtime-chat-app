@@ -31,6 +31,27 @@ class Auth extends Controller {
 			}
 		}
 	}
+
+	public function login(){
+		if (!$this->post('username') OR !$this->post('password')) {
+			echo json_encode(["error" => "Masukkan username dan password!"]);
+		}
+		else{
+			$data = [
+					 'username' => $this->post('username'),
+					 'password' => cryptText($this->post('password'))
+					];
+			$check_data = $this->model->masuk('user',$data);
+			if ($check_data === 1) {
+				$this->session->set_userdata($data);
+				echo json_encode(['success' => "Sukses, tunggu sebentar..."]);
+			}
+			else{
+				echo json_encode(['login_error' => "Username/Password salah!"]);
+			}
+		}
+	}
+
 	public function test(){
 		$check_data = $this->model->show_data('user',['username' => 's']);
 		var_dump($check_data);

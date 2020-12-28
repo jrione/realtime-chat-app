@@ -131,4 +131,17 @@ class Database {
 		$this->statement->execute();
 		return  $this->statement->rowCount();
 	}
+
+	public function num_rows_where($dbtable,$where){
+		$arr=[];
+		foreach ($where as $index => $values) {
+			$va=$index.="='{$values}'";
+			array_push($arr, $va);
+		}
+		$vaa=implode(' AND ', $arr);
+		$sql = "SELECT*FROM {$dbtable} WHERE {$vaa}";
+		$this->statement=$this->conn->prepare($sql);
+		$this->statement->execute();
+		return  $this->statement->rowCount();
+	}
 }

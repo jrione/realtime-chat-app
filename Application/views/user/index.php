@@ -99,7 +99,7 @@
 			});
 			$("#masuk").click(function(){
 				t.innerHTML = "Login";
-				infoRegis.style.display = 'none';
+				infoLogin.style.display = 'none';
 				$("#register-form").slideUp(1000)
 				$("#login-form").delay(1000).slideDown(1000);
 			});
@@ -141,6 +141,28 @@
 					};
 				});
 			});
+
+			$("#submit_login").click(function(){
+				$.post('<?= base_url('auth/login') ?>',{
+					username: $("#username-login").val(),
+					password: $("#password-login").val()
+				},
+				function(data){
+					jsonDataLogin = JSON.parse(data);
+					if (jsonDataLogin['error']) {
+						ingfo(infoLogin,jsonDataLogin['error'],'danger');
+					}
+					else{
+						if (jsonDataLogin['login_error']) {
+							ingfo(infoLogin,jsonDataLogin['login_error'],'danger');		
+						}
+						else{
+							ingfo(infoLogin,jsonDataLogin['success'],'success');	
+							location.reload();
+						}
+					}
+				});
+			})
 		</script>
 	<?php			
 		}

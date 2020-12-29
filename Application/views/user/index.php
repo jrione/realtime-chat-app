@@ -1,6 +1,3 @@
-	<?php
-		
-	?>
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -13,7 +10,6 @@
 		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->	
 		<script type="text/javascript" src="<?= base_url('assets/js/jquery.js') ?>"></script>
 		<!-- <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script> -->
-
 	</head>
 	<?php
 		if ($this->session->userdata() == array()) {
@@ -66,7 +62,6 @@
 
 				            <input type="password" id="password-daftar" class="form-control validate">
 				            <label data-error="wrong" data-success="right" for="password"><p style="color: #ced4da; float: left;"><b>╰</b></p>Password</label>
-
 				          </div>
 				          <div class="md-form" >
 				            <p id="info-register" style="display: none;"></p>
@@ -186,7 +181,7 @@
 							<h3 class="card-title text-center">Semua Kontak</h3>
 							<hr>
 							<div id="contact-list" class="card-text">
-								<div class="list row">
+								<div id="contact-list-child" class="list row">
 									<div class="list-img col-sm-2">
 										<img class="img-profile" src="<?= base_url('img/sawah.jpg')?>">
 									</div>
@@ -246,21 +241,46 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-		// setInterval(function(){
+		setInterval(function(){
 			$.post('<?= base_url('proses/fetchAccountData') ?>',{
 				key : '<?= cryptText('getAccountData')  ?>',
 				username: '<?= $personal_data['username'] ?>'
 			},
 			function(data){
-				if (data) {
-					alert(data);
+				var cl = document.getElementById('contact-list-child');
+				jsonDataContact = JSON.parse(data);
+				
+				if (jsonDataContact['null_user']) {
+					cl.innerHTML = jsonDataContact['null_user'];
+					cl.setAttribute('class','list row justify-content-center');
 				}
 				else{
-					alert("TEST");
+					cl.setAttribute('class','list row');
+					var listImg = document.createElement("div");
+					var listName = document.createElement("div");
+					// cl.appendChild(listImg);
+					$("#contact-list-child").html("");
 				}
 			});
-		// },1000);
+		},700);
 	</script>
+	<script type="text/javascript">
+		setInterval(function(){
+				$.post('<?= base_url('proses/sessionTimeOut') ?>',{
+				key :'<?= cryptText('getTimeoutInfo') ?>'
+			},
+			function(data){
+				jsonDataTimeout = JSON.parse(data);
+				if (jsonDataTimeout['timeout']) {
+					location.reload();
+				}
+				else{
+
+				}
+			});
+		},1000);
+		</script>
+	
     <script type="text/javascript" src="<?= base_url('assets/js/script.js') ?>"></script>
 	<?php
 		}

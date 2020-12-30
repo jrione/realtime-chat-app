@@ -180,19 +180,8 @@
 						<div class="card-body">
 							<h3 class="card-title text-center">Semua Kontak</h3>
 							<hr>
-							<div id="contact-list" class="card-text">
-								<div id="contact-list-child" class="list row">
-									<div class="list-img col-sm-2">
-										<img class="img-profile" src="<?= base_url('img/sawah.jpg')?>">
-									</div>
-									<div class="list-name-and-chat col-sm-10">
-										<div class="list-name row">
-											<a><b>ABCDEFGHIJKLMNOPQRSTUVWXYZ</b></a>
-										</div>
-										<div class="list-chat row">
-											ABCDEFGHIJKLMNOPQRSTUV...<div class="time badge">20.12</div>
-										</div>
-									</div>
+							<div id="data-contact" class="card-text" >
+								<div id="contact-list-child" class="list row" >
 								</div>
 							</div>
 						</div>
@@ -256,13 +245,24 @@
 				}
 				else{
 					cl.setAttribute('class','list row');
-					var listImg = document.createElement("div");
-					var listName = document.createElement("div");
-					// cl.appendChild(listImg);
 					$("#contact-list-child").html("");
+
+					var ini=0;
+					while (ini < jsonDataContact['contactCount'].length ) {
+						var listContact = document.createElement("div");
+
+						listContact.setAttribute('id','contact-'+ini);
+						listContact.setAttribute('class','col-sm-12 mb-2');
+						listContact.innerHTML += "<img class='img-profile mb-2 mr-2' id='contact-"+ini+"' src='<?= base_url('img/sawah.jpg')?>'>"
+						listContact.innerHTML +=  "<b class='mb-4'>"+jsonDataContact['contactCount'][ini]['name']+"</b>";
+
+						cl.appendChild(listContact);
+
+						ini++
+					}
 				}
 			});
-		},700);
+		},1000);
 	</script>
 	<script type="text/javascript">
 		setInterval(function(){

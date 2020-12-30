@@ -1,6 +1,6 @@
 var t = $(window).height() * 8.75/10;
 $(".card").css({'height':t})
-$("#data").css({'height':t-130})
+$("#data,#data-contact").css({'height':t-130})
 
 var base_url = (path) =>{
 	return document.URL + path;

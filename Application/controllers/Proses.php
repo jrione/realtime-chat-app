@@ -16,7 +16,7 @@ class Proses extends Controller{
 			else{
 				$dataUser[0]['password'] = 'protected';
 				unset($dataUser[0]['password']);
-				echo json_encode(['user_exist' => "null"]);
+				echo json_encode(["contactCount" => $dataUser]);
 			}
 		}
 		else{

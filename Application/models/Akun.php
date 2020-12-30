@@ -25,6 +25,6 @@ class Akun{
 	}
 
 	public function get_all_account_data($dbtable,$username){
-		return $this->db->query("SELECT*FROM {$dbtable} WHERE NOT username='{$username}' ORDER BY name DESC ");
+		return $this->db->query("SELECT*FROM {$dbtable} WHERE NOT username='{$username}' ORDER BY name ASC ");
 	}
 }

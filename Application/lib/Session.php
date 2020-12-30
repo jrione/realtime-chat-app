@@ -13,7 +13,7 @@ class Session{
 		$t = split(':', $time); //bisa diganti pake explode();
 
 
-		$t[1] += 2; // session timeout 2 jam
+		$t[0] += 2; // session timeout 2 jam
 		if ($t[0] <10) {
 			$t[0] = sprintf('%02d',$t[0]);
 		}
